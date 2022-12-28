@@ -25,7 +25,7 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setButtonText('Sending...');
+    setButtonText('Gönderiliyor');
     let response = await fetch('http://localhost:5000/contact', {
       method: 'POST',
       headers: {
@@ -33,15 +33,15 @@ const Contact = () => {
       },
       body: JSON.stringify(formDetails),
     });
-    setButtonText('Send');
+    setButtonText('Gönder');
     let result = await response.json();
     setFormDetails(formInitialDetails);
     if (result.code == 200) {
-      setStatus({ succes: true, message: 'Message sent successfully' });
+      setStatus({ succes: true, message: 'Mesaj gönderme işlemi başarılı!' });
     } else {
       setStatus({
         succes: false,
-        message: 'Something went wrong, please try again later.',
+        message: 'Birşeyler yanlış gitti lütfen daha sonra tekrar deneyin.',
       });
     }
   };
